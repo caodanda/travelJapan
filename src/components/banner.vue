@@ -35,27 +35,6 @@ export default {
   props:{
     bannerTitle:String,
   },
-  mounted(){
-    var _this = this;
-    function changeImage() {
-      setTimeout(()=>{
-        if (_this.isRight) {
-          _this.activeIndex++;
-        } else {
-          _this.activeIndex--;
-        }
-        
-        if( _this.activeIndex >= 47){
-           _this.isRight = false
-        }
-        if( _this.activeIndex <= 0){
-           _this.isRight = true
-        }
-        changeImage()
-      },20) 
-    }
-    changeImage()
-  },
   data(){
     return{
       isRight: true,
@@ -110,51 +89,61 @@ export default {
         {url:require('../assets/banner/b46.jpg')},
         {url:require('../assets/banner/b47.jpg')},
         {url:require('../assets/banner/b48.jpg')},
+        {url:require('../assets/banner/b49.jpg')}
       ]
     }
   },
+  mounted(){
+    var _this = this;
+    function changeImage() {
+      setTimeout(()=>{
+        if (_this.isRight) {
+          _this.activeIndex++;
+        } else {
+          _this.activeIndex--;
+        }
+        
+        if( _this.activeIndex >= 48){
+           _this.isRight = false
+        }
+        if( _this.activeIndex <= 0){
+           _this.isRight = true
+        }
+        changeImage()
+      },50) 
+    }
+    changeImage()
+  }
 }
 </script>
 
 <style scoped>
 .banner-container{
-  width: 520px;
-  height: 1100px;
+  width: 100%;
   margin: 0 auto;
-  /* border: solid 0.5px gray; */
+  position: relative;
   background-color: #1c1b23;
 } 
-/* 生成背景图片切换的动画 */
-/* @keyframes background-picture {
-  0%{background-image:url(../assets/banner/bg1.jpeg);}
-  24.99%{background-image:url(../assets/banner/bg1.jpeg);}
-  25%{background-image:url(../assets/banner/bg2.jpeg);}
-  49.99%{background-image:url(../assets/banner/bg2.jpeg);}
-  50%{background-image: url(../assets/banner/bg3.jpeg);}
-  74.99%{background-image: url(../assets/banner/bg3.jpeg);}
-  75%{background-image: url(../assets/banner/bg4.jpeg);}
-  99.99%{background-image: url(../assets/banner/bg4.jpeg);}
-  100%{background-image: url(../assets/banner/bg5.jpeg);}
-} */
 #banner-picture{
   width: 100%;
-  height: 840px;
-  /* background: url(../assets/banner/bg1.jpeg) no-repeat; */
   background-size: 530px 800px;
   position: relative;
-  /* animation: background-picture 1s infinite linear; */
 }
 .logo{
-  width: 520px;
-  margin-top: 20px;
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  left: 0;
 }
 .banner-move{
   position: absolute;
 }
 .banner-title{
-  width: 320px;
-  left: 100px;
-  top: 80px;
+  display: inline-block;
+  width: 60%;
+  position: absolute;
+  top: 120px;
+  left: 20%;
 }
 .fps{
   width: 100%;
@@ -164,51 +153,51 @@ export default {
   to{transform: rotate(15deg) scale(1.1,1.1);}
 }
 .banner-play{
-  width: 80px;
-  left: 210px;
-  bottom: 55px;
-  animation: play 3s infinite alternate linear;
+  width: 10%;
+  left: 20%;
+  bottom: 4%;
+  animation: play 2s infinite alternate linear;
 }
 @keyframes book {
   from{transform:translateX(0) translateY(0);}
   to{transform:translateX(-20px) translateY(15px);}
 }
 .banner-book{
-  width: 134px;
-  left: 300px;
-  bottom: 168px;
-  animation: book 3s infinite alternate linear;
+  width: 20%;
+  left: 40%;
+  bottom: 12%;
+  animation: book 2s infinite alternate linear;
 }
 .banner-coffee{
-  width: 94px;
-  left: 400px;
-  bottom: 280px;
-  animation: book 3s infinite alternate linear;
-  animation-delay: 1s;
+  width: 20%;
+  left: 60%;
+  bottom: 24%;
+  animation: book 2s infinite alternate linear;
+  animation-delay: 2s;
 }
 .banner-fire{
-  width: 97px;
-  right: 0px;
-  bottom: 0px;
+  width: 10%;
+  right: 0;
+  bottom: 0;
 }
 @keyframes bottom {
   from{transform:translateY(0);opacity:1;}
   to{transform:translateY(30px);opacity:0;}
 }
 .banner-bottom{
-  width: 34px;
-  right: 240px;
-  bottom: 0px;
-  animation: bottom 3s infinite ;
+  width: 5%;
+  right: 48%;
+  bottom: 0;
+  animation: bottom 2s infinite ;
 }
 .banner-text{
   width: 100%;
-  height: 100px;
-  color: #c7c8c7;
+  color: #fff;
+  
 }
 .banner-text p{
-  font-size: 18px;
-  margin: 40px 40px 0px;
+  font-size: 40px;
+  padding: 30px 80px;
 }
 /* 设置花瓣落下的动画 */
 /* 如果想让1个标签实现多个动画效果（例如移动和旋转），可以通过嵌套div实现，div实现移动路线，花瓣的标签实现旋转 */
@@ -222,8 +211,9 @@ export default {
 }
 /* 设置div-flower 移动的动画效果 */
 .flower{
+width: 100%;
 position: absolute;
-left: 70px;
+left: 5%;
 bottom: 440px;
 }
 
@@ -238,21 +228,22 @@ bottom: 440px;
 }
 
 .flower1{
-  width: 38px;
+  width: 8%;
   left: 0px;
   bottom: 0px;
-  animation: rotate 5s infinite linear;
-}
-.flower2{
-  width: 28px;
-  left: -6px;
-  bottom: -30px;
   animation: rotate 4s infinite linear;
 }
+.flower2{
+  width: 6%;
+  left: -6px;
+  bottom: -30px;
+  animation: rotate 3s infinite linear;
+  animation-delay: 2s;
+}
 .flower3{
-  width: 18px;
+  width: 3%;
   left: 34px;
   bottom: -26px;
-  animation: rotate 3s infinite linear;
+  animation: rotate 2s infinite linear;
 }
 </style>

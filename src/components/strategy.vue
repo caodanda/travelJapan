@@ -57,8 +57,7 @@ export default {
 </script>
 <style scoped>
 .strategy{
-  width: 520px;
-  height: 1240px;
+  width: 100%;
   margin: 0 auto;
   background-color: #3c37c0;
   padding-top: 20px;
@@ -68,37 +67,42 @@ export default {
 .title{
   width: 100%;
   height: 42px;
-  margin-bottom: 36px;
+  margin-bottom: 100px;
   clear: both;
 }
 .title img{
-  width: 349px;
-  height: 42px;
+  width: 60%;
+  height: 160%;
   float: right;
 }
 .tips{
-  width:504px;
-  height:285px ;
-  margin: 0 0 40px 4px;
+  width:90%;
+  margin: 0 auto;
   clear: both;
-  background: url('../assets/strategy/st2.png') no-repeat  100% /92% ;
+  background: url('../assets/strategy/st2.png') no-repeat;
+  background-size: contain;
+  display: flex;
+  box-sizing: border-box;
+  padding-right: 100px;
+  padding-bottom: 15%;
 }
-.left,.right{
-  float: left;
+.right{
+  flex: 4;
 }
 .left{
-  width: 95px;
-  height: 36px;
-  line-height: 36px;
-  margin-top: 24px;
+  flex: 2;
+  box-sizing: border-box;
+  padding-top: 100px;
   text-align: center;
+  margin-left: -60px;
 }
 .left p{
-  width:95% ;
-  height: 36px;
+  width:60%;
+  height: 100px;
+  line-height: 100px;
   background: url('../assets/strategy/st10.png') no-repeat 100%/100% ;
-  margin:20px 0 ;
-  font-size: 17px;
+  margin:10px 0 ;
+  font-size: 30px;
   color: #249be9;
 }
 .left p.active{
@@ -106,49 +110,60 @@ export default {
   color:#934871
 }
 .right{
-  width: 380px;
-  margin: 50px 0 0 5px;
+  box-sizing: border-box;
+  padding: 100px 40px 10px 0;
   font-family: PingFangSC-Light,PingFang SC;
+  /* margin-left: -20%; */
 }
 .right h2{
-  font-size: 17px;
+  font-size: 32px;
   color: #3c37c0;
   font-weight: 600;
-  margin:  5px 0;
+  margin:  10px 0;
+}
+.right p{
+  font-size: 28px;
 }
 .travel{
-  width: 85%;
-  height: 18px;
+  width: 90%;
+  height: 100%;
 }
 .container{
   width: 100%;
+  position: relative;
 }
 .main-box{
-  width: 520px;
-  height: 156px;
-  margin: 0 auto;
-  margin-top: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
   position: relative;
-  /* overflow: hidden; */
 }
 .main-box img{
   display: inline-block;
 }
 .main-box:nth-child(even) .pic2{
-  width: 498px;
-  height: 132px;
-  margin-left: 10px;
+  width: 90%;
+  height: 100%;
+  margin: 50px
 }
 .main-box:nth-child(odd) .pic2{
-  width: 450px;
-  height: 132px;
-  margin-left: 32px;
+  width: 80%;
+  height: 100%;
+  margin: 60px
 }
 .main-box:nth-child(even) .pic1{
-  right: 33px;
+  width: 15%;
+  height: 60%;
+  position: absolute;
+  right: 100px;
+  bottom: 60px;
 }
 .main-box:nth-child(odd) .pic1{
-  left: 18px;
+  width: 15%;
+  height: 60%;
+  position: absolute;
+  left: 20px;
+  bottom: 60px;
 }
 @keyframes move {
   from{transform: translateY(-4px);}

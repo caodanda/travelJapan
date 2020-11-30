@@ -34,8 +34,6 @@ export default {
   },
   data(){
     return{
-    // id:"nihao"
-    // 定义数据保存请求的数据
     bannerTitle:"",
     fireworks:[],
     activeCard:[],
@@ -50,7 +48,7 @@ export default {
   // vue生命周期函数承载axios请求数据
   mounted(){
     axios({
-      url:"https://topicapi.mafengwo.cn/topic/data?app=play_handbook",
+      url:"https://mock.yonyoucloud.com/mock/16370/travel",
       params:{
         banner_title:"",
       }
@@ -116,8 +114,8 @@ a{
   margin:0 10px 10px;
   }
   .area{
-    width: 520px;
-    height: 1680px;
+    width: 100%;
+    /* height: 1680px; */
     margin: 0 auto;
     background-image: linear-gradient(180deg,rgba(0,228,255,.74),#688bff);
     background-color: #000000;

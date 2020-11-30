@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .contain{
-  width:520px;
+  width:100%;
   margin: 0 auto;
   background-color: #f7f7f7;
   border-top-left-radius: 25px;
@@ -54,42 +54,52 @@ export default {
   overflow: hidden;
 }
 .titlebar img{
-  width: 514px;
-  height: 24px;
+  width: 80%;
+  height: 100%px;
   margin-left: 20px;
 }
 ul{
   display: inline-block;
   vertical-align: top;
 }
+
+.containlist{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto; 
+  box-sizing: border-box;
+  padding: 10px;
+  
+}
+.left,.right{
+  flex: 1;
+  
+}
 .left{
   margin-right: 8px;
 }
-.containlist{
-  width:478px;
-  margin: 0 auto; 
-  
-}
 .containlist li{
-  width:235px ;
+  width:100% ;
   margin-top: 20px;
   
 }
 .pic1{
-  width: 235px;
+  width: 100%;
 }
 .list{
   clear: both;
 }
 .pic2{
-  width: 12px;
+  width: 5%;
   float: left;
   vertical-align: top;
   border-radius: 15px;
+  margin-right: 5px;
 }
 .list h2{
-  width: 223px;
-  font-size: 18px;
+  width: 90%;
+  font-size: 24px;
   color: #242629;
   float: left;
   vertical-align: top;

@@ -71,35 +71,15 @@ export default {
     this.cardMove()
     }
   },
-  // 监听鼠标滚动时触发动画  
-  // mounted(){
-  //   window.onscroll=function(){
-  //     // 获取鼠标滚动的高度
-  //     let top = document.documentElement.scrollTop || document.body.scrollTop;
-  //     // 获取li标签
-  //     let cardlist = document.getElementsByClassName('cardlist');
-  //     // 设置两个li标签之间间隔的高度；第一个li标签距离页面的滚动的高度为635px，每个li之前间隔303px，直到1860px
-  //     let h = 303
-  //     // 遍历li标签，且同时判断鼠标滚动的高度是否大于每个li距离页面顶部的距离，如果大于再去判断li的索引奇数/偶数，设置不同的过渡动画
-  //     for(let i = 0;i<cardlist.length;i++){
-  //       if(top >=(635+i*h)){
-  //         if(i%2==0){
-  //           cardlist[i].classList.add("left")
-  //         }else{
-  //           cardlist[i].classList.add("right")
-  //       }
-  //       }
-  //     }     
-  //   }
-  // },
   methods:{
     cardMove(){
       let cardlist = document.getElementsByClassName('cardlist');
-      // 设置两个li标签之间间隔的高度；第一个li标签距离页面的滚动的高度为635px，每个li之前间隔303px，直到1860px
-      // let h = 303
+      let sTop = document.body.scrollTop
+      console.log(sTop);
+      // 设置两个li标签之间间隔的高度；第一个li标签距离页面的滚动的高度为1200px，每个li之前间隔400px
       // 遍历li标签，且同时判断鼠标滚动的高度是否大于每个li距离页面顶部的距离，如果大于再去判断li的索引奇数/偶数，设置不同的过渡动画
       for(let i = 0;i<cardlist.length;i++){
-        if(this.top >=(635+i*303)){
+        if(this.top >=(1200+i*400)){
           if(i%2==0){
             cardlist[i].classList.add("left")
           }else{
@@ -107,7 +87,6 @@ export default {
         }
         }
       }     
-
     }
   }
 }
@@ -115,15 +94,14 @@ export default {
 
 <style scoped>
 .fireworks-container{
-  width: 520px;
-  height: 1850px;
+  width: 100%;
+  /* height: 1850px; */
   margin: 0 auto;
+  padding-bottom: 40%;
   position: relative;
-/* css中定义背景渐变色 */
   background-color: #333;
   background-image: linear-gradient(180deg,rgba(60,28,113),rgba(168, 53, 139, 0.4));
   color: #ffffff;
-  font-size: 16px;
 } 
 .firetitle{
   width: 100%;
@@ -131,37 +109,37 @@ export default {
   position: relative;
 }
 .title1{
-  width: 110px;
+  width: 15%;
   position: absolute;
   right: 0;
   top: -46px;
 }
 .title2{
-  width: 90px;
+  width: 10%;
   position: absolute;
   left: 0;
   top: -56px;
 }
 .title{
-  width: 340px;
-  height: 52px;
+  width: 60%;
+  height: 100%;
   position: absolute;
   right: 0;
   top: 40px;
 }
 .firecard{
   width: 100%;
-  height: 1482px;
+  /* height: 1482px; */
   position: relative;
 }
 .bro img,.broo img{
-  width: 37px;
-  height: 460px;
+  width: 10%;
+  height: 40%;
   position: absolute;
 }
 .broo{
   position: absolute;
-  top: 660px;
+  top: 40%;
 }
 .bro1{
   left:0px ;
@@ -180,15 +158,26 @@ export default {
   position: relative;
   overflow: hidden;
 }
-
-/* 第一部分：设置左侧卡片列表的样式 */
 @keyframes left {
-  from{margin-left: -470px;}
-  to{margin-left: 55px;}
+  from{margin-left: -80%;}
+  to{margin-left: 20%;}
 }
 @keyframes right {
-  from{margin-left: 520px;}
-  to{margin-left: 0px;}
+  from{margin-left: 100%;}
+  to{margin-left: 0%;}
+}
+.cardlist{
+  display: flex;
+  width: 100%;
+}
+.left-cardleft,.right-cardleft{
+  flex:3
+}
+.left-cardright,.right-cardright{
+  flex: 5;
+}
+.right-cardleft{
+order: 1;
 }
 .left{
   animation: left 1s linear;
@@ -198,156 +187,104 @@ export default {
   animation: right 1s linear;
   animation-fill-mode: forwards;
 }
-.left-cardlist{
-  width: 464px;
-  height: 272px;
+
+.left-cardlist,.right-cardlist{
+  width: 80%;
   border: solid 1px #fff1cc;
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
-  margin-left: -470px;
-  margin-top: 28px;
+  margin-top: 60px; 
   background-image: linear-gradient(7deg,rgb(164, 49, 168), rgba(186, 57, 152, 0.13));
 }
-.left-cardleft{
-  width: 218px;
-  height: 272px;
-  vertical-align: middle;
-  position: relative;
-  display: inline-block;
+.right-cardlist{
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
 }
-.left-cardleft .picture{
-  width: 218px;
-  height: 272px;
+.left-cardleft,.right-cardleft{
+  height: 300px;
+  position: relative;
+}
+.left-cardleft .picture,.right-cardleft .picture{
+  width: 100%;
+  height: 100%;
   position: absolute;
   left: -40px;
   top: 10px;
   background-image: url("../assets/fireworks/fire-bg2.png");
-  background-size: 218px 244px;
+  background-size: 90% 100%;
   background-repeat: no-repeat;
 }
-.left-cardleft img{
-  width: 186px;
+.left-cardleft img,.right-cardleft img{
+  width: 80%;
   position: absolute;
-  top: 27px;
-  left: 3px;
+  top: 12px;
+  left: 0px;
 }
 .left-cardleft .pictext{
-  width: 150px;
+  width: 90%;
   text-align: center;
-  font-size: 10px;
+  font-size: 16px;
   position: absolute;
-  bottom: 0px;
-  left: 3px;
+  bottom: -50px;
+  left: 0px;
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.3);
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
 }
-.left-cardright{
-  width: 246px;
-  height: 272px;
-  margin-left: -20px;
-  vertical-align: middle;
-  display: inline-block;
-  font-size: 16px;
+.left-cardright,.right-cardright{
+  font-size: 26px;
 }
 .left-cardright .righttitle img ,.left-cardright .righttitle h2{
   display: inline-block;
 }
-.left-cardright .righttitle{
+.left-cardright .righttitle,.right-cardright .righttitle{
   width: 100%;
   height: 40px;
-  padding: 20px 4px 6px;
+  padding: 20px 4px;
   border-bottom: solid 0.5px rgba(255, 255, 255, 0.47);
 }
-.left-cardright .righttitle img{
-  width: 50px;
-  height: 24px;
+.left-cardright .righttitle img,.right-cardright .righttitle img{
+  width: 80px;
+  height: 40px;
   margin-right: 4px;
 }
-.left-cardright .cardtext{
-  padding: 4px 0px 0px 0px;
-  font:300 16px PingFangSC-Light,PingFang SC ;
+.left-cardright .cardtext,.right-cardright .cardtext{
+  padding: 10px;
+  font:300 30px PingFangSC-Light,PingFang SC ;
   opacity: 0.8;
 }
-/* 第二部分：设置右侧卡片列表的样式 */
+
 .right-cardlist{
-  width: 464px;
-  height: 272px;
-  border: solid 1px #a2e1ff;
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  margin-left: 520px;
-  margin-top: 28px;
   background-image: linear-gradient(7deg,#287eb2,rgba(186,57,152,.13));
 }
 .right-cardleft{
-  width: 218px;
-  height: 272px;
-  vertical-align: middle;
   position: relative;
-  display: inline-block;
 }
 .right-cardleft .picture{
-  width: 218px;
-  height: 272px;
-  position: absolute;
-  left: 290px;
-  top: 10px;
-  background-image: url("../assets/fireworks/fire-bg2.png");
-  background-size: 218px 244px;
-  background-repeat: no-repeat;
-  /* 直接通过transform直接做到图片反转 */
-  transform: rotateY(180deg)
-}
-.right-cardleft img{
-  width: 186px;
-  position: absolute;
-  top: 27px;
-  left: 3px;
+  margin-left: 120px;
+
 }
 .right-cardleft .pictext{
-  width: 150px;
+  width: 90%;
   text-align: center;
-  font-size: 10px;
+  font-size: 16px;
   position: absolute;
-  bottom: 6px;
-  left: 315px;
-  margin-bottom: 10px;
+  bottom: -50px;
+  right: 0px;
   background-color: rgba(255, 255, 255, 0.3);
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
 }
-.right-cardright{
-  width: 246px;
-  height: 272px;
-  margin-left: -200px;
-  vertical-align: middle;
-  display: inline-block;
-  font-size: 16px;
-}
 .right-cardright .righttitle img ,.right-cardright .righttitle h2{
   display: inline-block;
 }
-.right-cardright .righttitle{
-  width: 100%;
-  height: 40px;
-  padding: 20px 4px 6px;
-  border-bottom: solid 0.5px rgba(255, 255, 255, 0.47);
-}
-.right-cardright .righttitle img{
-  width: 50px;
-  height: 24px;
-  margin-right: 4px;
-}
-.right-cardright .cardtext{
-  padding: 4px 0px 0px 0px;
-  font:300 16px PingFangSC-Light,PingFang SC ;
-  opacity: 0.8;
+.right-cardright{
+  margin-left: 20px;
 }
 /* --------------------------------------- */
-
-
 /* 设置底部图片的样式 */
 .firebottom{
   width: 100%;
@@ -355,31 +292,29 @@ export default {
   margin-top: 20px;
   position: absolute;
   bottom: -100px;
-  /* overflow: hidden; */
 }
 .firebottom .bar,.firebottom .flower,.firebottom .person{
   position: absolute;
   z-index: 99;
 }
 .firebottom .bar{
-  width: 460px;
-  height: 100px ;
+  width: 90%;
+  height: 60% ;
   display: inline-block;
   bottom: 80px;
   left: 32px;
   
 }
 .firebottom .flower{
-  width: 48px;
-  height: 88px ;
+  width: 10%;
+  height: 60%;
   display: inline-block;
   bottom: 100px;
   right: 0px;
 
 }
 .firebottom .person{
-  width: 418px;
-  height: 472px;
+  width: 60%;
   bottom: 0px;
   left: 0px;
 }

@@ -27,11 +27,6 @@ export default {
       mainMove:false
     }
   },
-  // mounted() {
-  //   setTimeout(() => {
-  //       // this.mainMove = false
-  //     },600)
-  // },
   watch: {
     activeCard(cur, pre) {
       // if函数用于判断activeCard数组是否修改，修改前的数组长度为0是默认值，则不执行过渡动画函数的调用，否则执行动画函数
@@ -56,21 +51,18 @@ export default {
 
 <style  scoped>
 .box{
-  width: 526px;
-  height: 436px;
+  width: 100%;
   color: #fff;
 }
 .box-item{
+  width: 100%;
   overflow: hidden;
-}
-.title,.main{
-  width: 450px;
-  margin: 0 auto;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  
 }
 .title{
-  /* height: 30px; */
   margin-bottom: 20px;
-  /* background: #2eaccc; */
   margin-left: 28px;
   position: relative;
   z-index: 1;
@@ -81,27 +73,29 @@ export default {
   vertical-align: middle;
 }
 .title p{
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 24px;
   text-align: center;
   background-color: rgb(4, 113, 202);
   border: 0.5px solid #0471ca;
   border-radius: 50%;
 }
 .title h2{
-  font-size: 24px;
+  font-size: 34px;
   margin-left: 10px;
 }
 .main{
-  height: 386px;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
   border-left: 2px solid #158ad5;
   position: relative;
 }
 .main img{
-  width: 396px;
-  height: 222px;
+  width: 90%;
+  height: 100%;
   z-index: 10;
   position: relative;
 }
@@ -116,18 +110,20 @@ export default {
   animation-fill-mode: forwards;
 }
 .photo{
+  width: 100%;
+  height: 100%;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 .photo::before{
   content:"";
   display: inline-block;
   background-color:#4defff;
-  width:396px;
-  height:222px;
+  width:90%;
+  height:100%;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 20px;
   z-index: 1;
   }
 .photo span{
@@ -139,6 +135,7 @@ export default {
   line-height: 22px;
   text-align: center;
   font-size: 12px;
+  color: #fff;
   background-color: rgba(255, 255, 255, 0.3);
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
@@ -147,7 +144,7 @@ export default {
   margin-left: 20px;
 }
 .main p{
-  font-size: 18px;
+  font-size: 24px;
   position: relative;
 }
 
