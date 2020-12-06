@@ -91,7 +91,7 @@ export default {
   padding: 0;
 }
 #app{
-  width:1200px;
+  /* width:1200px; */
   margin: 0 auto;
   font-size: 14px;
 }

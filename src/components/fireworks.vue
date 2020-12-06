@@ -225,7 +225,7 @@ order: 1;
 .left-cardleft .pictext{
   width: 90%;
   text-align: center;
-  font-size: 16px;
+  font-size: 22px;
   position: absolute;
   bottom: -50px;
   left: 0px;
@@ -270,7 +270,7 @@ order: 1;
 .right-cardleft .pictext{
   width: 90%;
   text-align: center;
-  font-size: 16px;
+  font-size: 22px;
   position: absolute;
   bottom: -50px;
   right: 0px;

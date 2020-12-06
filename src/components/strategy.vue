@@ -77,6 +77,7 @@ export default {
 }
 .tips{
   width:90%;
+  /* height: 550px; */
   margin: 0 auto;
   clear: both;
   background: url('../assets/strategy/st2.png') no-repeat;
@@ -113,16 +114,18 @@ export default {
   box-sizing: border-box;
   padding: 100px 40px 10px 0;
   font-family: PingFangSC-Light,PingFang SC;
+  height: 100%;
+  overflow: hidden;
   /* margin-left: -20%; */
 }
 .right h2{
-  font-size: 32px;
+  font-size: 30px;
   color: #3c37c0;
   font-weight: 600;
   margin:  10px 0;
 }
 .right p{
-  font-size: 28px;
+  font-size: 26px;
 }
 .travel{
   width: 90%;

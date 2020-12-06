@@ -73,17 +73,17 @@ export default {
   vertical-align: middle;
 }
 .title p{
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 24px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 40px;
   text-align: center;
   background-color: rgb(4, 113, 202);
-  border: 0.5px solid #0471ca;
+  border: 1px solid #0471ca;
   border-radius: 50%;
 }
 .title h2{
-  font-size: 34px;
+  font-size: 40px;
   margin-left: 10px;
 }
 .main{
@@ -144,7 +144,7 @@ export default {
   margin-left: 20px;
 }
 .main p{
-  font-size: 24px;
+  font-size: 32px;
   position: relative;
 }
 

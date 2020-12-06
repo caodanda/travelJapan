@@ -62,7 +62,7 @@ export default {
     border: 0.5px solid #4aa8f7;
     border-radius: 16px;
     text-align: center;
-    font-size: 26px;
+    font-size: 34px;
     color: #137ccb;
     background-color: #8bdfff;
   }

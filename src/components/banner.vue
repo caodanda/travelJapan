@@ -1,10 +1,7 @@
 <template>
   <div class="banner-container">
     <div id="banner-picture">
-      <img class="fps" :src="item.url" 
-        v-for="(item,index) in photos" 
-        v-bind:key="index"
-        v-show="index === activeIndex"/>
+      <canvas id="mycanvas"></canvas>
       <img class="logo" src="../assets/banner/banner1.png"/>
       <img class="banner-title banner-move" src="../assets/banner/banner2.png"/>
       <img class="banner-play banner-move" src="../assets/banner/banner3.png"/>
@@ -22,9 +19,6 @@
         <img class="flower3 banner-move" src="../assets/banner/flower3.png"/>
       </div>
       
-    </div>
-    <div class="banner-text">
-      <p>{{bannerTitle}}</p>
     </div>
   </div>
 </template>
@@ -90,29 +84,64 @@ export default {
         {url:require('../assets/banner/b47.jpg')},
         {url:require('../assets/banner/b48.jpg')},
         {url:require('../assets/banner/b49.jpg')}
-      ]
+      ],
+      imgLists:[],
+      num:0,
+      status:true,
+      ctx:null,
+      mycanvas:null
     }
   },
   mounted(){
-    var _this = this;
-    function changeImage() {
-      setTimeout(()=>{
-        if (_this.isRight) {
-          _this.activeIndex++;
-        } else {
-          _this.activeIndex--;
-        }
-        
-        if( _this.activeIndex >= 48){
-           _this.isRight = false
-        }
-        if( _this.activeIndex <= 0){
-           _this.isRight = true
-        }
-        changeImage()
-      },50) 
+    // 加载图片
+    this.requestImg()
+    // canvas绘制
+    this.initCanvas()
+   
+  },
+  methods:{
+    getPicData(url){
+      let promise = new Promise((resolve,reject)=>{
+        let img = new Image();
+        this.imgLists.push(img);
+        img.onload = function(){
+          resolve();
+          this.num+=1;
+        };
+        img.onerror = function(){reject()};
+        img.src = url
+      })
+      return promise
+    },
+    async requestImg(){
+      let imgData = this.photos.map( e => this.getPicData(e.url));
+      await Promise.all(imgData)
+      this.move()
+    },
+    initCanvas(){
+      this.mycanvas = document.getElementById('mycanvas');
+      this.mycanvas.width = document.documentElement.clientWidth || document.body.clientWidth;
+      this.mycanvas.height = document.documentElement.clientHeight || document.body.clientHeight
+      this.ctx = this.mycanvas.getContext('2d');
+    },
+    move(){
+      this.ctx.clearRect(0,0,this.mycanvas.width,this.mycanvas.height)
+      this.ctx.drawImage(this.imgLists[this.num],0,0,this.mycanvas.width,this.mycanvas.height)
+      if(this.num >= 48){
+        this.status = false
+      }
+      if(this.num <= 0){
+        this.status = true
+      }
+      if (this.status == false) {
+        this.num--
+      }else {
+        this.num++
+      }
+      requestAnimationFrame(()=> {
+        setTimeout(()=>{this.move()},1000/60)
+      })
     }
-    changeImage()
   }
 }
 </script>
@@ -120,6 +149,7 @@ export default {
 <style scoped>
 .banner-container{
   width: 100%;
+  height: 2200px;
   margin: 0 auto;
   position: relative;
   background-color: #1c1b23;
@@ -187,13 +217,13 @@ export default {
 .banner-bottom{
   width: 5%;
   right: 48%;
-  bottom: 0;
+  bottom: 3%;
   animation: bottom 2s infinite ;
 }
 .banner-text{
   width: 100%;
   color: #fff;
-  
+  margin-top: -42px;
 }
 .banner-text p{
   font-size: 40px;
