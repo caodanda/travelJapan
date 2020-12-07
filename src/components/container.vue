@@ -47,7 +47,6 @@ export default {
   background-color: #f7f7f7;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  margin-top: -50px;
 }
 .titlebar{
   padding-top: 30px;

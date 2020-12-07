@@ -2,34 +2,34 @@
   <div id="app">
     <!-- 父传子添加动态属性 -->
     <banner :bannerTitle="bannerTitle"></banner>
-    <fireworks :fireworks="fireworks" :top="top"></fireworks>
+    <!-- <fireworks :fireworks="fireworks" :top="top"></fireworks> -->
     <div class="area">
       <areas :data="data" v-on:tabKeyChange="tabKeyChange" :top="top"></areas>
       <!-- 在子组件的标签上添加ref属性，为了调用子组件的函数方法 -->
       <areasM :activeCard="activeCard" ref="areasM"></areasM>
       <img class="area-bottom" src="./assets/areas/areas.png" />
     </div>
-    <strategy :tabList="tabList" v-on:changeIndex="indexChange" :num="num" :travelTips="travelTips"></strategy>
+    <!-- <strategy :tabList="tabList" v-on:changeIndex="indexChange" :num="num" :travelTips="travelTips"></strategy> -->
     <container :recommend="recommend" ref="container"></container>
   </div>
 </template>
 <script>
 import axios from  'axios'
 import banner from  './components/banner'
-import fireworks from  './components/fireworks'
+// import fireworks from  './components/fireworks'
 import areas from  './components/areas'
 import areasM from  './components/areaModules/areasM'
-import strategy from './components/strategy'
+// import strategy from './components/strategy'
 import container from './components/container'
 
 export default {
   name:'App',
   components:{
     banner,
-    fireworks,
+    // fireworks,
     areas,
     areasM,
-    strategy,
+    // strategy,
     container,
   },
   data(){

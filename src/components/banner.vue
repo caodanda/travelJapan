@@ -120,7 +120,8 @@ export default {
     },
     initCanvas(){
       this.mycanvas = document.getElementById('mycanvas');
-      this.mycanvas.width = document.documentElement.clientWidth || document.body.clientWidth;
+      let app = document.getElementById('app')
+      this.mycanvas.width = app.offsetWidth
       this.mycanvas.height = document.documentElement.clientHeight || document.body.clientHeight
       this.ctx = this.mycanvas.getContext('2d');
     },
@@ -139,7 +140,9 @@ export default {
         this.num++
       }
       requestAnimationFrame(()=> {
-        setTimeout(()=>{this.move()},1000/60)
+        setTimeout(()=>{
+          this.move()
+        },1000/60)
       })
     }
   }
@@ -149,7 +152,7 @@ export default {
 <style scoped>
 .banner-container{
   width: 100%;
-  height: 2200px;
+  height: 100vh;
   margin: 0 auto;
   position: relative;
   background-color: #1c1b23;
