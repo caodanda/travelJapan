@@ -1,6 +1,12 @@
 <template>
   <div class="banner-container">
-    <div id="banner-picture">
+    <div id="progress" v-if="proStatus">
+      <span class="progress_out">
+          <span class="progress_in" :style="{width:progressWidth}"></span>
+          <span class="progress_text" :style="{left:progressWidth}">{{progressWidth}}</span>
+      </span>
+    </div>
+    <div id="banner-picture" :style="{'display':active}">
       <canvas id="mycanvas"></canvas>
       <img class="logo" src="../assets/banner/banner1.png"/>
       <img class="banner-title banner-move" src="../assets/banner/banner2.png"/>
@@ -87,9 +93,13 @@ export default {
       ],
       imgLists:[],
       num:0,
+      loaded:0,
       status:true,
       ctx:null,
-      mycanvas:null
+      mycanvas:null,
+      active:'none',
+      progressWidth:null,
+      proStatus:true
     }
   },
   mounted(){
@@ -97,26 +107,29 @@ export default {
     this.requestImg()
     // canvas绘制
     this.initCanvas()
-   
+    console.log(this.progressWidth);
   },
   methods:{
     getPicData(url){
       let promise = new Promise((resolve,reject)=>{
         let img = new Image();
         this.imgLists.push(img);
-        img.onload = function(){
+        img.onload = ()=>{
           resolve();
-          this.num+=1;
+          this.loaded+=1;
+          this.progressWidth = Math.floor(this.loaded / this.photos.length *100) + '%';
         };
         img.onerror = function(){reject()};
-        img.src = url
+        img.src = url;
       })
       return promise
     },
     async requestImg(){
       let imgData = this.photos.map( e => this.getPicData(e.url));
-      await Promise.all(imgData)
-      this.move()
+      await Promise.all(imgData);
+      this.proStatus = false;
+      this.active = 'block';
+      this.move();
     },
     initCanvas(){
       this.mycanvas = document.getElementById('mycanvas');
@@ -150,6 +163,39 @@ export default {
 </script>
 
 <style scoped>
+#progress{
+  width: 100%;
+  height:60px;
+  position: relative;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  padding: 0 80px;
+}
+.progress_out{
+    display:inline-block;
+    width:100%;
+    height: 50px;
+    background-color: rgba(5, 80, 105, 1);
+    position:relative;
+    border-radius: 20px;
+}
+.progress_in{
+  display:inline-block;
+  height:50px;
+  border-radius: 20px;
+  background: rgba(2, 227, 252, 1);
+  position:absolute;
+  top:0;
+  left:0;
+}
+.progress_text{
+  color: #fff;
+  position:absolute;
+  font-size: 24px;
+  top: -40px;
+}
 .banner-container{
   width: 100%;
   height: 100vh;
